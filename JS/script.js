@@ -20,7 +20,7 @@ function createList(){
     })
 }
 
-// gets current weather for selected city and calls uv index function
+// gets current weather for selected city
 function currentWeather(city, API) {
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid="+API;
     
@@ -40,6 +40,34 @@ function currentWeather(city, API) {
         $(".todaysWeather").append("<p>Humidity: "+data.main.humidity+" %</p>")
         $(".todaysWeather").append("<p>Wind: "+data.wind.speed+" mph</p>")
     })
+}
 
+// function to get 5 day forecast for searched city
+function fiveDayForecast(city, API) {
+    let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+API;
+    // api call to get 5 day forecast
+    $.ajax({
+        url: forecastURL,
+        method: "GET"
+    }).then(function (data) {
+        for (i = 0; i < data.list.length; i++) {
+            if (data.list[i].dt_txt.search("15:00:00") != -1) {
+                let forecastDate = data.list[i];
+                // appends api data onto a card to display 5 day forecast
+                $(".fiveDay").append(
+                    `<div class="card bg-primary shadow m-4">
+                        <div class="card-body">
+                            <h4 class="card-title">${(new Date(1000 * forecastDate.dt).getUTCMonth()) + 1}/${new Date(1000 * forecastDate.dt).getUTCDate()+1}/${new Date(1000 * forecastDate.dt).getUTCFullYear()}</h4>
+                            <div class="card-text">
+                                <img src="http://openweathermap.org/img/w/${forecastDate.weather[0].icon}.png">
+                                <p class="card-text">Temp: ${forecastDate.main.temp} &degF</p>
+                                <p class="card-text">Humidity: ${forecastDate.main.humidity} %</p>
+                            </div>
+                        </div>
+                    </div>`
+                );
+            }
+        }
+    })
 }
 
