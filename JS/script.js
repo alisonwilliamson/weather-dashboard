@@ -87,3 +87,22 @@ function getUVI(API, lat, lon) {
         $(".todaysWeather").append('<p>UV Index: <span class="badge badge-danger p-2">'+data.value+'</span></p>');
     })
 }
+
+// gets city from local storage and calls api to get data for last searched city if it exists
+function main() {
+    let storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    // checks if there's a stored city in local storage
+    if (storedCities !== null) {
+        cityList = storedCities;
+    }
+
+    createList();
+
+    // if there is a city stored it gets the current weather and 5 day forecast
+    if (cityList) {
+        let city = cityList[cityList.length - 1]
+        currentWeather(city, API);
+        fiveDayForecast(city, API);
+    }
+}
