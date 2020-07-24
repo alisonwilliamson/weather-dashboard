@@ -106,3 +106,22 @@ function main() {
         fiveDayForecast(city, API);
     }
 }
+
+// function that calls current weather and 5-day forecasts for city
+function displayWeather() {
+    let city = $(this).attr("data-city");
+
+    // clears todaysWeather div
+    $(".todaysWeather").empty();
+    // populates todaysWeather with the searched city's current weather
+    currentWeather(city, API);
+
+    // clears the fiveDay div
+    $(".fiveDay").empty();
+    // populates fiveDay with the searched city's 5 day weather forecast
+    fiveDayForecast(city, API);
+    
+}
+
+// calls main function that displays current and 5-day forecast
+main();
