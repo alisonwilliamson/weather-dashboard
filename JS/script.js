@@ -23,7 +23,8 @@ function createList(){
 // gets current weather for selected city
 function currentWeather(city, API) {
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid="+API;
-    
+    let lat;
+    let lon;
     // api call to get searched city's current weather
     $.ajax({
         url: weatherURL,
@@ -39,6 +40,9 @@ function currentWeather(city, API) {
         $(".todaysWeather").append("<p>Temperature: "+data.main.temp+" &degF</p>")
         $(".todaysWeather").append("<p>Humidity: "+data.main.humidity+" %</p>")
         $(".todaysWeather").append("<p>Wind: "+data.wind.speed+" mph</p>")
+        lat = data.coord.lat;
+        lon = data.coord.lon;
+        getUVI(API, lat, lon);
     })
 }
 
@@ -71,3 +75,15 @@ function fiveDayForecast(city, API) {
     })
 }
 
+// function to get uv index for searched city
+function getUVI(API, lat, lon) {
+    let uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid="+API;
+    // api call to get uv index
+    $.ajax({
+        url: uvURL,
+        method: "GET"
+    }).then(function (data) {
+        // appends uv index data onto todaysWeather
+        $(".todaysWeather").append('<p>UV Index: <span class="badge badge-danger p-2">'+data.value+'</span></p>');
+    })
+}
