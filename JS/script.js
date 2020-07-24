@@ -125,3 +125,16 @@ function displayWeather() {
 
 // calls main function that displays current and 5-day forecast
 main();
+
+// submit event that loads new data
+$("form").on("submit", function(event) {
+    event.preventDefault();
+    let newCity = $("#citySearch").val().trim();
+    cityList.push(newCity);
+    createList();
+    storeCities();
+    $("#citySearch").val("");
+})
+
+// when city in the list is clicked it displays weather
+$(".cityList").on("click", ".cityButton", displayWeather);
