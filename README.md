@@ -21,3 +21,9 @@ THEN I am presented with the last searched city forecast
 ```
 
 Here is the link to the working page: https://alisonwilliamson.github.io/weather-dashboard/
+
+![Screenshot (1)](https://user-images.githubusercontent.com/54878075/88377891-fbed8c80-cd6d-11ea-8bca-f84dc443129c.png)
+![Screenshot (2)](https://user-images.githubusercontent.com/54878075/88377902-0019aa00-cd6e-11ea-882e-488fc5fe4d36.png)
+![Screenshot (3)](https://user-images.githubusercontent.com/54878075/88377907-027c0400-cd6e-11ea-8f6b-265f22e4b285.png)
+![Screenshot (4)](https://user-images.githubusercontent.com/54878075/88377914-04de5e00-cd6e-11ea-8258-88c71ca994c5.png)
+![Screenshot (5)](https://user-images.githubusercontent.com/54878075/88377917-0740b800-cd6e-11ea-98f4-612847bf8c97.png)
